@@ -1,0 +1,8 @@
+<div class="app">
+  <div *ngIf="loading" class="loader-container">
+    <app-loader></app-loader>
+  </div>
+  <div [@fadeAnimation]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"><app-nav-bar></app-nav-bar></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="details-car" *ngIf="cars">
+  <div class="details-car__button">
+    <back-logo class="details-car__button__back" (click)="goBack()"></back-logo>
+  </div>
+  <div class="details-car__container">
+    <div class="details-car__photo">
+      <img [src]="cars.photo" alt="{{ cars.name }}" />
+    </div>
+    <div class="details-car__marca">
+      <p>{{ cars.name }}</p>
+    </div>
+    <div class="details-car__info-price">
+      Precio En oferta
+      <div class="details-car__info-price__price">
+        {{ cars.price | currency }}
+      </div>
+    </div>
+  </div>
+  <div class="details-car__container-details">
+    <div class="details-car__container-details__title">
+      Características del producto
+    </div>
+    <div class="details-car__container-details__brand">{{ cars.brand }}</div>
+    <div class="details-car__container-details__model">{{ cars.model }}</div>
+    <div class="details-car__container-details__km">{{ cars.km }}</div>
+    <div class="details-car__container-details__plate">{{ cars.plate }}</div>
+    <div class="details-car__container-details__ubication">
+      {{ cars.ubication }}
+    </div>
+  </div>
+</div>

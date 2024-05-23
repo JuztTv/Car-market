@@ -1,0 +1,107 @@
+<div class="home">
+  <div class="home__container-details">
+    <div class="home__sort">
+      <div class="home__sort__header">
+        <div>Carros, Motos y Otros > Carros y Camionetas</div>
+        <p class="home__sort__header__title">Ordenar por:</p>
+      </div>
+      <select [(ngModel)]="selectedSortOption" (change)="sortCards()">
+        <option class="home__sort__title__views" value="views">
+          Más vistas
+        </option>
+        <option class="home__sort__title__priceAsc" value="priceAsc">
+          Menor precio
+        </option>
+        <option class="home__sort__title__priceAsc" value="priceDesc">
+          Mayor precio
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="home__container-filters">
+    <div class="home__filter">
+      <div class="home__filter__header">
+        <div class="home__filter__header__titles">
+          <div class="home__filter__header__titles__title">Carros</div>
+          <div class="home__filter__header__titles__results">
+            51.681 resultados
+          </div>
+        </div>
+        <div class="home__filter__header__title__save">
+          <save-logo></save-logo>
+          Guardar esta busqueda
+        </div>
+      </div>
+      <div class="home__filter__description">
+        <div class="home__filter__description__car">
+          <p>Marca</p>
+          <ng-container *ngTemplateOutlet="marcaTemplate"></ng-container>
+        </div>
+        <div class="home__filter__description__car">
+          <p>Modelo</p>
+          <ng-container *ngTemplateOutlet="modeloTemplate"></ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="home__header">
+      <div class="home__header__img">
+        <img src="./../../assets/img/HEADER.png" />
+      </div>
+      <div class="home__cars-market">
+        <ng-container *ngTemplateOutlet="carsTemplate"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #marcaTemplate>
+  <div class="home__filter__description__car" *ngFor="let car of carData">
+    <div class="home__filter__description__car__option">
+      {{ car.brand }}
+      <div class="home__filter__description__car__option__results">
+        ({{ car.results }})
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #modeloTemplate>
+  <div class="home__filter__description__car" *ngFor="let model of modelData">
+    <div class="home__filter__description__car__option">
+      {{ model.brand }}
+      <div class="home__filter__description__car__option__results">
+        ({{ model.results }})
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #carsTemplate>
+  <div
+    class="home__cars"
+    *ngFor="let car of cars"
+    (click)="navigateToDetail(car.id!)"
+  >
+    <div class="home__cars__card">
+      <img src="{{ car.photo }}" />
+      <div class="home__cars__card__info">
+        <div class="home__cars__card__price">
+          <div class="home__cars__card__price__views">
+            {{ car.price }}
+            <div class="home__cars__card__price__views__count">
+              <div class="home__cars__card__price__views__count__info">
+                <eye-logo></eye-logo>
+              </div>
+              {{ car.viewCount }}
+            </div>
+          </div>
+          <div class="home__cars__card__price__model">
+            {{ car.model }} | {{ car.km }}Km
+          </div>
+        </div>
+        <div class="home__cars__card__title">{{ car.name }}</div>
+        <div class="home__cars__card__ubication">{{ car.ubication }}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>
