@@ -197,3 +197,98 @@ export class backComponent {}
   styleUrls: ['./icons.component.scss'],
 })
 export class arrowDownComponent {}
+
+@Component({
+  selector: 'check-logo',
+  template: `
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 -960 960 960"
+      width="24px"
+      fill="#a70000"
+    >
+      <path
+        d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+      />
+    </svg>
+  `,
+  styleUrls: ['./icons.component.scss'],
+})
+export class checkDownComponent {}
+
+@Component({
+  selector: 'like-logo',
+  template: `
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 -960 960 960"
+      width="24px"
+      fill="#e8eaed"
+    >
+      <path
+        d="M720-120H280v-520l280-280 50 50q7 7 11.5 19t4.5 23v14l-44 174h258q32 0 56 24t24 56v80q0 7-2 15t-4 15L794-168q-9 20-30 34t-44 14Zm-360-80h360l120-280v-80H480l54-220-174 174v406Zm0-406v406-406Zm-80-34v80H160v360h120v80H80v-520h200Z"
+      />
+    </svg>
+  `,
+  styleUrls: ['./icons.component.scss'],
+})
+export class likeComponent {}
+
+@Component({
+  selector: 'dislike-logo',
+  template: `
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 -960 960 960"
+      width="24px"
+      fill="#e8eaed"
+    >
+      <path
+        d="M240-840h440v520L400-40l-50-50q-7-7-11.5-19t-4.5-23v-14l44-174H120q-32 0-56-24t-24-56v-80q0-7 2-15t4-15l120-282q9-20 30-34t44-14Zm360 80H240L120-480v80h360l-54 220 174-174v-406Zm0 406v-406 406Zm80 34v-80h120v-360H680v-80h200v520H680Z"
+      />
+    </svg>
+  `,
+  styleUrls: ['./icons.component.scss'],
+})
+export class dislikeComponent {}
+
+@Component({
+  selector: 'dislike-fill-logo',
+  template: `
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 -960 960 960"
+      width="24px"
+      fill="#bc0000"
+    >
+      <path
+        d="M240-840h400v520L360-40l-50-50q-7-7-11.5-19t-4.5-23v-14l44-174H120q-32 0-56-24t-24-56v-80q0-7 1.5-15t4.5-15l120-282q9-20 30-34t44-14Zm480 520v-520h160v520H720Z"
+      />
+    </svg>
+  `,
+  styleUrls: ['./icons.component.scss'],
+})
+export class dislikeFillComponent {}
+
+@Component({
+  selector: 'like-fill-logo',
+  template: `
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 -960 960 960"
+      width="24px"
+      fill="#bc0000"
+    >
+      <path
+        d="M720-120H320v-520l280-280 50 50q7 7 11.5 19t4.5 23v14l-44 174h218q32 0 56 24t24 56v80q0 7-1.5 15t-4.5 15L794-168q-9 20-30 34t-44 14ZM240-640v520H80v-520h160Z"
+      />
+    </svg>
+  `,
+  styleUrls: ['./icons.component.scss'],
+})
+export class likeFillComponent {}

@@ -34,13 +34,26 @@ export class HomeComponent {
         this.cars.sort((a, b) => b.viewCount - a.viewCount);
         break;
       case 'priceAsc':
-        this.cars.sort((a, b) => a.price - b.price);
+        this.cars.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
         break;
       case 'priceDesc':
-        this.cars.sort((a, b) => b.price - a.price);
+        this.cars.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
         break;
       default:
         break;
     }
+  }
+
+  onViewCount(carId: number): void {
+    this.carService.addViewCount(carId).subscribe((updatedCar: AllCarData) => {
+      const carIndex = this.cars.findIndex((car) => car.id === carId);
+      if (carIndex !== -1) {
+        this.cars[carIndex].viewCount++;
+      }
+      console.log(
+        'Contador de vistas actualizado para el coche con ID:',
+        carId
+      );
+    });
   }
 }

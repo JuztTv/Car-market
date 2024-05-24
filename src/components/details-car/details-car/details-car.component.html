@@ -1,31 +1,173 @@
 <div class="details-car" *ngIf="cars">
-  <div class="details-car__button">
-    <back-logo class="details-car__button__back" (click)="goBack()"></back-logo>
+  <div class="details-car__header-route">
+    <div class="details-car__button">
+      <back-logo
+        class="details-car__button__back"
+        (click)="goBack()"
+      ></back-logo>
+    </div>
+    <div class="details-car__header-route__route">
+      Carros, Motos y Otros > Carros y Camionetas > {{ cars.name }}
+    </div>
   </div>
-  <div class="details-car__container">
-    <div class="details-car__photo">
-      <img [src]="cars.photo" alt="{{ cars.name }}" />
+  <div class="details-car__all-containers">
+    <div class="details-car__container-all">
+      <div class="details-car__container">
+        <div class="details-car__container__photo">
+          <img [src]="cars.photo" alt="{{ cars.name }}" />
+        </div>
+        <div class="details-car__container__info">
+          <div class="details-car__container__text">
+            <div class="details-car__container__info__offer">
+              Precio En oferta
+            </div>
+            <div class="details-car__container__info__info-price">
+              <div class="details-car__container__info__info-price__price">
+                ${{ cars.price }}
+              </div>
+            </div>
+            <div class="details-car__container__info__brand">
+              {{ cars.name }}
+            </div>
+          </div>
+          <hr />
+          <!-- DETALLES DEL CARRO -->
+          <div class="details-car__container__container-details">
+            <div class="details-car__container__container-details__title">
+              Características del producto
+            </div>
+            <div class="details-car__container__container-details__info">
+              <div
+                class="details-car__container__container-details__info__brand"
+              >
+                <div class="title">Marca</div>
+                <div class="subtitle">
+                  <check-logo></check-logo> {{ cars.brand }}
+                </div>
+              </div>
+              <div
+                class="details-car__container__container-details__info__model"
+              >
+                <div class="title">Modelo</div>
+                <div class="subtitle">
+                  <check-logo></check-logo> {{ cars.model }}
+                </div>
+              </div>
+              <div class="details-car__container__container-details__info__km">
+                <div class="title">Kilometraje</div>
+                <div class="subtitle">
+                  <check-logo></check-logo> {{ cars.km }}Km
+                </div>
+              </div>
+              <div
+                class="details-car__container__container-details__info__plate"
+              >
+                <div class="title">Placa</div>
+                <div class="subtitle">
+                  <check-logo></check-logo> {{ cars.plate }}
+                </div>
+              </div>
+            </div>
+            <div class="ubication">
+              <location-logo class="svg"></location-logo> {{ cars.ubication }}
+            </div>
+            <div class="details-car__container-all__save">Comprar</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="details-car__marca">
-      <p>{{ cars.name }}</p>
-    </div>
-    <div class="details-car__info-price">
-      Precio En oferta
-      <div class="details-car__info-price__price">
-        {{ cars.price | currency }}
+    <div class="details-car__container-all__section-comentarios">
+      <div class="details-car__container-all__section-comentarios__all">
+        <div
+          class="details-car__container-all__section-comentarios__all__title"
+        >
+          Comenta
+        </div>
+        <form
+          [formGroup]="commentForm"
+          (ngSubmit)="onSubmit()"
+          class="details-car__container-all__section-comentarios__all__form"
+        >
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Nombre" formControlName="username" />
+          </mat-form-field>
+
+          <mat-form-field
+            class="details-car__container-all__section-comentarios__all__comentario"
+            appearance="outline"
+          >
+            <mat-label>Comentario</mat-label>
+            <textarea matInput formControlName="content"></textarea>
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="details-car__container-all__section-comentarios__all__save"
+          >
+            Comentar
+          </button>
+        </form>
       </div>
     </div>
   </div>
-  <div class="details-car__container-details">
-    <div class="details-car__container-details__title">
-      Características del producto
-    </div>
-    <div class="details-car__container-details__brand">{{ cars.brand }}</div>
-    <div class="details-car__container-details__model">{{ cars.model }}</div>
-    <div class="details-car__container-details__km">{{ cars.km }}</div>
-    <div class="details-car__container-details__plate">{{ cars.plate }}</div>
-    <div class="details-car__container-details__ubication">
-      {{ cars.ubication }}
-    </div>
+  <div class="section-comentarios">
+    <div class="section-comentarios__title">Comentarios</div>
+    <ng-template [ngTemplateOutlet]="comentSection"></ng-template>
   </div>
 </div>
+
+<ng-template #comentSection>
+  <div *ngIf="comments.length > 0; else noComments">
+    <div
+      class="section-comentarios"
+      *ngFor="let comment of comments"
+      [@commentAnimation]
+    >
+      <div class="section-comentarios__container">
+        <div class="section-comentarios__container__name-user">
+          @{{ comment.username }}
+          <div class="section-comentarios__container__date">
+            {{ comment.date | date : "short" }}
+          </div>
+        </div>
+        <div class="section-comentarios__container__description">
+          {{ comment.content }}
+          <div class="section-comentarios__reactions">
+            <div
+              class="section-comentarios__reactions__like"
+              (click)="comment.id && addLike(comment.id)"
+              (mouseover)="comment.id && onHoverComment(comment.id, true)"
+              (mouseleave)="comment.id && onHoverComment(comment.id, false)"
+            >
+              <ng-container *ngIf="comment.id && hoverStates[comment.id]">
+                <like-fill-logo></like-fill-logo>
+              </ng-container>
+              <ng-container *ngIf="comment.id && !hoverStates[comment.id]">
+                <like-logo></like-logo> </ng-container
+              >{{ comment.like }}
+            </div>
+            <div
+              class="section-comentarios__reactions__dislike"
+              (click)="comment.id && addDislike(comment.id)"
+              (mouseover)="comment.id && onHoverComment(comment.id, true)"
+              (mouseleave)="comment.id && onHoverComment(comment.id, false)"
+            >
+              <ng-container *ngIf="comment.id && hoverStates[comment.id]">
+                <dislike-fill-logo></dislike-fill-logo>
+              </ng-container>
+              <ng-container *ngIf="comment.id && !hoverStates[comment.id]">
+                <dislike-logo></dislike-logo>
+              </ng-container>
+              {{ comment.dislike }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noComments>
+    <div class="no-comments-text">Aún no hay comentarios.</div>
+  </ng-template>
+</ng-template>

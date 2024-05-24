@@ -8,6 +8,11 @@ import {
   iconComponent,
   backComponent,
   arrowDownComponent,
+  checkDownComponent,
+  likeComponent,
+  dislikeComponent,
+  dislikeFillComponent,
+  likeFillComponent,
 } from './icons-component';
 
 const components = [
@@ -18,6 +23,11 @@ const components = [
   iconComponent,
   backComponent,
   arrowDownComponent,
+  checkDownComponent,
+  likeComponent,
+  dislikeComponent,
+  dislikeFillComponent,
+  likeFillComponent,
 ];
 
 @NgModule({

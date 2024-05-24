@@ -80,7 +80,7 @@
   <div
     class="home__cars"
     *ngFor="let car of cars"
-    (click)="navigateToDetail(car.id!)"
+    (click)="onViewCount(car.id!); navigateToDetail(car.id!)"
   >
     <div class="home__cars__card">
       <img src="{{ car.photo }}" />

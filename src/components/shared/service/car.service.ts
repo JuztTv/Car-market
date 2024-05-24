@@ -18,4 +18,11 @@ export class CarService {
   getCarById(id: number): Observable<AllCarData> {
     return this.http.get<AllCarData>(`${this.baseUrl}/one?id=${id}`);
   }
+
+  addViewCount(carId: number): Observable<AllCarData> {
+    return this.http.put<AllCarData>(
+      `${this.baseUrl}/viewCount?id=${carId}`,
+      {}
+    );
+  }
 }

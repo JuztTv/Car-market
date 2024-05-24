@@ -15,6 +15,11 @@ import { DetailsCarComponent } from 'src/components/details-car/details-car/deta
 import { LoaderComponent } from './loader/loader/loader.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -36,8 +41,12 @@ import { HttpClientModule } from '@angular/common/http';
     IconsModule,
     FormsModule,
     HttpClientModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [MatSnackBar],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
